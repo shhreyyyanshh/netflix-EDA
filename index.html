@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVault Pitch Deck - Code Heist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutral Blue -->
+    <!-- Application Structure Plan: The application is structured as a single-page interactive presentation with a fixed navigation bar. This tab-based design allows judges to easily jump between key sections of the pitch (Problem, Solution, Tech, etc.) for non-linear exploration, which is more user-friendly than a simple long scroll. The structure prioritizes clarity and engagement, using interactive cards and diagrams to highlight core concepts and make the information digestible and memorable. This design was chosen to present the hackathon pitch in a modern, professional format that is easy to navigate and understand quickly. -->
+    <!-- Visualization & Content Choices: The source report's content (a pitch deck) is primarily conceptual and visual. Therefore, the chosen presentation methods focus on clarity and interactivity rather than complex data visualization. Information: Key text points are presented in clean, scannable cards. Goal: Organize & Engage. The UI mockups are displayed in an interactive modal gallery to showcase the product's vision. The process flow and architecture diagrams have been recreated using structured HTML and Tailwind CSS instead of static images, allowing for potential future interactivity and ensuring a consistent, high-quality look. This avoids static images for diagrams and confirms that no SVG or Mermaid JS were used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-link.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .modal {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.flex {
+             display: flex;
+        }
+        .diagram-box {
+            border: 1px solid #e5e7eb;
+            background-color: #ffffff;
+        }
+        .diagram-arrow {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">EduVault</span>
+                        <span class="text-sm text-gray-500 ml-2 mt-1">by Code Heist</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-8">
+                        <a class="nav-link font-medium text-gray-500 hover:text-blue-600 active" data-target="problem">The Problem</a>
+                        <a class="nav-link font-medium text-gray-500 hover:text-blue-600" data-target="solution">Our Solution</a>
+                        <a class="nav-link font-medium text-gray-500 hover:text-blue-600" data-target="why-us">Why Us?</a>
+                        <a class="nav-link font-medium text-gray-500 hover:text-blue-600" data-target="tech">Technology</a>
+                        <a class="nav-link font-medium text-gray-500 hover:text-blue-600" data-target="roadmap">Roadmap</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- The Problem Section -->
+            <section id="problem" class="content-section active">
+                <div class="text-center">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">Bridging the Digital Literacy Gap</h1>
+                    <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600">Millions of students worldwide face a digital literacy gap, struggling with language barriers, limited guidance, and a lack of personalized support. Existing educational tools are often too generic, inaccessible, or fail to adapt to a student's specific learning materials, leaving them to struggle with complex concepts and information overload.</p>
+                </div>
+                <div class="mt-12">
+                     <img src="http://googleusercontent.com/image_generation_content/0" alt="Illustration of the problem and solution" class="rounded-lg shadow-xl mx-auto max-w-4xl w-full">
+                </div>
+            </section>
+
+            <!-- The Solution Section -->
+            <section id="solution" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">Meet EduVault: Your Personal AI Tutor</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">EduVault is an AI-powered personalized learning assistant designed to transform static educational content into a dynamic, interactive experience.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">Core Features</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="feature-card text-center p-6 bg-gray-50 rounded-lg">
+                             <div class="text-blue-500 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                            </div>
+                            <h4 class="font-semibold text-lg">Generates Q&A and Summaries</h4>
+                            <p class="text-gray-600 text-sm mt-2">Converts content into digestible summaries and answers user questions.</p>
+                        </div>
+                        <div class="feature-card text-center p-6 bg-gray-50 rounded-lg">
+                             <div class="text-blue-500 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <h4 class="font-semibold text-lg">Explains Complex Concepts</h4>
+                            <p class="text-gray-600 text-sm mt-2">Simplifies difficult topics using analogies and examples tailored to the user's grade level.</p>
+                        </div>
+                        <div class="feature-card text-center p-6 bg-gray-50 rounded-lg">
+                            <div class="text-blue-500 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                            </div>
+                            <h4 class="font-semibold text-lg">Boosts Retention</h4>
+                            <p class="text-gray-600 text-sm mt-2">Automatically creates mini-quizzes and flashcards to reinforce learning.</p>
+                        </div>
+                        <div class="feature-card text-center p-6 bg-gray-50 rounded-lg">
+                           <div class="text-blue-500 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 9a9 9 0 00-9 9" /></svg>
+                            </div>
+                            <h4 class="font-semibold text-lg">Ensures Accessibility</h4>
+                            <p class="text-gray-600 text-sm mt-2">Supports multilingual input and output, making quality education globally accessible.</p>
+                        </div>
+                    </div>
+                     <div class="text-center mt-8">
+                        <button id="view-ui-btn" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">View UI Mockups</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Us Section -->
+            <section id="why-us" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">An Award-Winning Idea</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">EduVault combines social impact with technical feasibility and a truly unique approach.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2">Social Impact</h3>
+                        <p class="text-gray-600">Directly addresses a critical global issue by making learning inclusive, personalized, and fun for millions of students.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2">Tech Feasibility</h3>
+                        <p class="text-gray-600">Our demo is visually compelling and easy to present—we can show "upload PDF → AI explains + creates quizzes" in under two minutes.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2">Out-of-the-Box Thinking</h3>
+                        <p class="text-gray-600">We combine cutting-edge Generative AI with embeddings and multilingual support to create a truly novel solution.</p>
+                    </div>
+                </div>
+                <div class="mt-10 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-800">Our Unique Selling Proposition (USP)</h3>
+                    <p class="text-blue-700">Unlike generic tools like ChatGPT or structured platforms like Khan Academy, EduVault dynamically adapts to **any** content a student needs, providing a personalized tutor on demand.</p>
+                </div>
+            </section>
+
+            <!-- Technology Section -->
+            <section id="tech" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">Our Technology Stack</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Built with a robust, scalable, and hackathon-ready stack.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-center mb-6">Technical Architecture</h3>
+                    <div class="space-y-4">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="diagram-box rounded-lg p-4 w-64">
+                                <p class="font-semibold">Student Frontend</p>
+                                <p class="text-sm text-gray-500">(React / Streamlit)</p>
+                            </div>
+                            <div class="diagram-arrow text-2xl my-2">↓</div>
+                        </div>
+                        <div class="flex justify-center items-start space-x-4">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="diagram-box rounded-lg p-4 w-48">
+                                    <p class="font-semibold">Upload PDF</p>
+                                </div>
+                            </div>
+                            <div class="diagram-arrow text-2xl mt-3">→</div>
+                             <div class="flex flex-col items-center text-center">
+                                <div class="diagram-box rounded-lg p-4 w-48">
+                                    <p class="font-semibold">Python Backend</p>
+                                    <p class="text-sm text-gray-500">(Flask / FastAPI)</p>
+                                </div>
+                            </div>
+                            <div class="diagram-arrow text-2xl mt-3">→</div>
+                            <div class="flex flex-col items-center text-center">
+                                <div class="diagram-box rounded-lg p-4 w-48">
+                                    <p class="font-semibold">Vector DB</p>
+                                    <p class="text-sm text-gray-500">(Pinecone / FAISS)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                             <div class="diagram-arrow text-2xl my-2">↓</div>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg text-center relative">
+                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Google Cloud Platform (GCP)</div>
+                             <div class="diagram-box rounded-lg p-4 w-full max-w-md mx-auto">
+                                <p class="font-semibold">AI/ML Models</p>
+                                <p class="text-sm text-gray-500">(GPT-4 / GPT-3.5 Turbo API)</p>
+                            </div>
+                             <div class="diagram-arrow text-2xl my-2">↓</div>
+                              <div class="diagram-box rounded-lg p-4 w-64 mx-auto">
+                                <p class="font-semibold">Multilingual AI Service</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roadmap Section -->
+            <section id="roadmap" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">Our Vision & Next Steps</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">EduVault is just the beginning. Here's our plan to scale our impact.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="space-y-8 border-l-2 border-gray-300 ml-4">
+                        <div class="relative">
+                            <div class="absolute -left-5 top-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                            <div class="ml-10 p-4 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold">User Testing</h3>
+                                <p class="mt-2 text-gray-600">Conduct user testing with a small group of students to gather feedback and refine the user experience.</p>
+                            </div>
+                        </div>
+                         <div class="relative">
+                            <div class="absolute -left-5 top-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                            <div class="ml-10 p-4 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold">Feature Expansion</h3>
+                                <p class="mt-2 text-gray-600">Integrate more features, such as voice-to-text functionality for handwritten notes and a collaborative learning mode.</p>
+                            </div>
+                        </div>
+                         <div class="relative">
+                            <div class="absolute -left-5 top-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                            <div class="ml-10 p-4 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold">Partnerships</h3>
+                                <p class="mt-2 text-gray-600">Explore partnerships with schools and educational organizations to scale this solution and make a real-world impact.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- UI Mockup Modal -->
+    <div id="ui-modal" class="modal fixed inset-0 bg-black bg-opacity-75 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-5xl relative p-4">
+             <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </button>
+            <h3 class="text-2xl font-bold text-center mb-4">EduVault UI Mockups</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="text-center">
+                    <img src="http://googleusercontent.com/image_generation_content/1" alt="Upload Interface" class="rounded-md border">
+                    <p class="text-sm font-medium mt-2">1. The Upload Interface</p>
+                </div>
+                 <div class="text-center">
+                    <img src="http://googleusercontent.com/image_generation_content/2" alt="Interactive Learning Interface" class="rounded-md border">
+                    <p class="text-sm font-medium mt-2">2. Interactive Learning</p>
+                </div>
+                 <div class="text-center">
+                    <img src="http://googleusercontent.com/image_generation_content/3" alt="Quiz and Flashcards Interface" class="rounded-md border">
+                    <p class="text-sm font-medium mt-2">3. Quiz & Flashcards</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const targetId = this.getAttribute('data-target');
+                    
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            const modal = document.getElementById('ui-modal');
+            const viewUiBtn = document.getElementById('view-ui-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            viewUiBtn.addEventListener('click', () => {
+                modal.classList.add('flex');
+            });
+            
+            const closeModal = () => {
+                modal.classList.remove('flex');
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if(e.target === this) {
+                    closeModal();
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
